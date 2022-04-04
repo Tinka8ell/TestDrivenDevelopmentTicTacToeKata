@@ -4,6 +4,8 @@ public class TicTacToe {
 
     private String board = ".".repeat(9);
     private boolean xIsNext = true;
+    private boolean gameOver = false;
+
     private static final int[][] lines = {
             // rows
             {0, 1, 2},
@@ -19,6 +21,8 @@ public class TicTacToe {
     };
 
     public String Turn(String input) {
+        if (gameOver)
+            return "Game is over";
         if (input == null || input.length() != 2)
             return "Bad input: expecting two character grid location";
         input = input.toUpperCase(); // tolerate mixed case!
@@ -34,10 +38,14 @@ public class TicTacToe {
         String player = xIsNext ? "X" : "O";
         board = board.substring(0, pos) + player + board.substring(pos + 1);
         xIsNext = ! xIsNext; // flip flop
-        if (playerWin(player))
+        if (playerWin(player)){
+            gameOver = true;
             return "Player " + player + " has won";
-        if (board.indexOf('.') == -1)
+        }
+        if (board.indexOf('.') == -1){
+            gameOver = true;
             return "Draw";
+        }
         return "Player " + player + " has taken: " + input;
     }
 

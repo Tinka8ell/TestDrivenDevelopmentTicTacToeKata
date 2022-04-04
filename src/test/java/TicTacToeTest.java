@@ -131,4 +131,30 @@ class TicTacToeTest {
         assertEquals(expected, game.Turn("C1"));
     }
 
+    @Test
+    public void checkGameOverAfterWin(){
+        String expected = "Game is over";
+        game.Turn("A1");
+        game.Turn("A2");
+        game.Turn("B1");
+        game.Turn("B2");
+        game.Turn("C1");
+        assertEquals(expected, game.Turn("C2"));
+    }
+
+    @Test
+    public void checkGameOverAfterDraw(){
+        String expected = "Game is over";
+        game.Turn("A1"); //X
+        game.Turn("A3"); //O
+        game.Turn("A2"); //X
+        game.Turn("B1"); //O
+        game.Turn("B2"); //X
+        game.Turn("C2"); //O
+        game.Turn("B3"); //X
+        game.Turn("C3"); //O
+        game.Turn("C1"); //X
+        assertEquals(expected, game.Turn("C1"));
+    }
+
 }
