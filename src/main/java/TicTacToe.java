@@ -3,7 +3,20 @@ public class TicTacToe {
     private String board = ".".repeat(9);
 
     public String Turn(String input) {
-        return "Player X has taken: A1";
+        if (input == null || input.length() != 2)
+            return "Bad input: expecting two character grid location";
+        input = input.toUpperCase(); // tolerate mixed case!
+        int row = "ABC".indexOf(input.charAt(0));
+        if (row < 0 )
+            return "Bad input: expecting grid location to start with A, B or C";
+        int col = "123".indexOf(input.charAt(1));
+        if (col < 0 )
+            return "Bad input: expecting grid location to end with 1, 2 or 3";
+        int pos = row + col * 3;
+        if (board.charAt(pos) != '.')
+            return "Bad input: grid location already occupied";
+        board = board.substring(0, pos) + "X" + board.substring(pos + 1);
+        return "Player X has taken: " + input;
     }
 
     @Override
