@@ -33,7 +33,7 @@ class TicTacToeTest {
             "C3, 1..., 2..., 3..X",
     })
     public void checkBoardAfterTurn1(String input, String row1, String row2, String row3){
-        game.Turn(input);
+        game.turn(input);
         String expected = " ABC\n" + row1 + "\n" + row2 + "\n" + row3;
         String result = game.toString();
         assertEquals(expected, result);
@@ -42,11 +42,11 @@ class TicTacToeTest {
     @Test
     public void checkEmptyInputToTurn(){
         String expect = "Player X has taken: null";
-        String result = game.Turn(null);
+        String result = game.turn(null);
         assertNotEquals(expect, result);
         assertTrue(result.startsWith("Bad"));
         String expect2 = "Player X has taken: ";
-        String result2 = game.Turn("");
+        String result2 = game.turn("");
         assertNotEquals(expect2, result2);
         assertTrue(result2.startsWith("Bad"));
     }
@@ -59,7 +59,7 @@ class TicTacToeTest {
     })
     public void checkTurn1(String input){
         String expected = "Player X has taken: " + input;
-        assertEquals(expected, game.Turn(input));
+        assertEquals(expected, game.turn(input));
     }
 
     @ParameterizedTest
@@ -70,7 +70,7 @@ class TicTacToeTest {
     })
     public void checkBadGrid(String input){
         String expected = "Player X has taken: " + input;
-        String result = game.Turn(input);
+        String result = game.turn(input);
         assertNotEquals(expected, result);
         assertTrue(result.startsWith("Bad"));
     }
@@ -78,23 +78,23 @@ class TicTacToeTest {
     @Test
     public void checkTurn2(){
         String expected = "Player O has taken: A2";
-        game.Turn("A1");
-        assertEquals(expected, game.Turn("A2"));
+        game.turn("A1");
+        assertEquals(expected, game.turn("A2"));
     }
 
     @Test
     public void checkBoardAfter2Turns(){
         String expect = " ABC\n1X..\n2O..\n3...";
-        game.Turn("A1");
-        game.Turn("A2");
+        game.turn("A1");
+        game.turn("A2");
         assertEquals(expect, game.toString());
     }
 
     @Test
     public void checkBadTurn2Same(){
         String expected = "Player O has taken: A2";
-        game.Turn("A1");
-        String result = game.Turn("A1");
+        game.turn("A1");
+        String result = game.turn("A1");
         assertNotEquals(expected, result);
         assertTrue(result.startsWith("Bad"));
     }
@@ -102,59 +102,59 @@ class TicTacToeTest {
     @Test
     public void checkBadTurn2SameAndDifferent(){
         String expected = "Player O has taken: A2";
-        game.Turn("A1");
-        game.Turn("A1"); // should fail, but allow next
-        assertEquals(expected, game.Turn("A2"));
+        game.turn("A1");
+        game.turn("A1"); // should fail, but allow next
+        assertEquals(expected, game.turn("A2"));
     }
 
     @Test
     public void checkForWin(){
         String expected = "Player X has won";
-        game.Turn("A1");
-        game.Turn("A2");
-        game.Turn("B1");
-        game.Turn("B2");
-        assertEquals(expected, game.Turn("C1"));
+        game.turn("A1");
+        game.turn("A2");
+        game.turn("B1");
+        game.turn("B2");
+        assertEquals(expected, game.turn("C1"));
     }
 
     @Test
     public void checkForDraw(){
         String expected = "Draw";
-        game.Turn("A1"); //X
-        game.Turn("A3"); //O
-        game.Turn("A2"); //X
-        game.Turn("B1"); //O
-        game.Turn("B2"); //X
-        game.Turn("C2"); //O
-        game.Turn("B3"); //X
-        game.Turn("C3"); //O
-        assertEquals(expected, game.Turn("C1"));
+        game.turn("A1"); //X
+        game.turn("A3"); //O
+        game.turn("A2"); //X
+        game.turn("B1"); //O
+        game.turn("B2"); //X
+        game.turn("C2"); //O
+        game.turn("B3"); //X
+        game.turn("C3"); //O
+        assertEquals(expected, game.turn("C1"));
     }
 
     @Test
     public void checkGameOverAfterWin(){
         String expected = "Game is over";
-        game.Turn("A1");
-        game.Turn("A2");
-        game.Turn("B1");
-        game.Turn("B2");
-        game.Turn("C1");
-        assertEquals(expected, game.Turn("C2"));
+        game.turn("A1");
+        game.turn("A2");
+        game.turn("B1");
+        game.turn("B2");
+        game.turn("C1");
+        assertEquals(expected, game.turn("C2"));
     }
 
     @Test
     public void checkGameOverAfterDraw(){
         String expected = "Game is over";
-        game.Turn("A1"); //X
-        game.Turn("A3"); //O
-        game.Turn("A2"); //X
-        game.Turn("B1"); //O
-        game.Turn("B2"); //X
-        game.Turn("C2"); //O
-        game.Turn("B3"); //X
-        game.Turn("C3"); //O
-        game.Turn("C1"); //X
-        assertEquals(expected, game.Turn("C1"));
+        game.turn("A1"); //X
+        game.turn("A3"); //O
+        game.turn("A2"); //X
+        game.turn("B1"); //O
+        game.turn("B2"); //X
+        game.turn("C2"); //O
+        game.turn("B3"); //X
+        game.turn("C3"); //O
+        game.turn("C1"); //X
+        assertEquals(expected, game.turn("C1"));
     }
 
 }

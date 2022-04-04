@@ -1,4 +1,6 @@
-import java.util.Arrays;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class TicTacToe {
 
@@ -20,7 +22,7 @@ public class TicTacToe {
             {2, 4, 6},
     };
 
-    public String Turn(String input) {
+    public String turn(String input) {
         if (gameOver)
             return "Game is over";
         if (input == null || input.length() != 2)
@@ -72,4 +74,18 @@ public class TicTacToe {
                 "\n2" + board.substring(3, 6) +
                 "\n3" + board.substring(6);
     }
+
+    public static void main(String[] args) throws IOException {
+        System.out.println("Welcome to Tic Tac Toe");
+        System.out.println("X goes first");
+        TicTacToe game = new TicTacToe();
+        BufferedReader buffer=new BufferedReader(new InputStreamReader(System.in));
+        while (!game.gameOver){
+            System.out.println(game);
+            String line=buffer.readLine();
+            System.out.println(game.turn(line));
+        }
+        System.out.println(game.turn("A1")); // force game over message
+    }
+
 }
