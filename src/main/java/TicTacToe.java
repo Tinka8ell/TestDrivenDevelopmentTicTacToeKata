@@ -1,6 +1,7 @@
 public class TicTacToe {
 
     private String board = ".".repeat(9);
+    private boolean xIsNext = true;
 
     public String Turn(String input) {
         if (input == null || input.length() != 2)
@@ -15,8 +16,10 @@ public class TicTacToe {
         int pos = row + col * 3;
         if (board.charAt(pos) != '.')
             return "Bad input: grid location already occupied";
-        board = board.substring(0, pos) + "X" + board.substring(pos + 1);
-        return "Player X has taken: " + input;
+        String player = xIsNext ? "X" : "O";
+        board = board.substring(0, pos) + player + board.substring(pos + 1);
+        xIsNext = ! xIsNext; // flip flop
+        return "Player " + player + " has taken: " + input;
     }
 
     @Override
