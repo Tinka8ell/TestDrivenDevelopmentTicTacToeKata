@@ -20,7 +20,7 @@ class TicTacToeTest {
     @Test
     public void checkTurn1(){
         String input = "A1";
-        String expect = "Play X has taken: A1";
+        String expect = "Player X has taken: A1";
         assertEquals(expect, game.Turn(input), "First turn to top right");
     }
 
