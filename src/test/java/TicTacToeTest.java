@@ -90,4 +90,21 @@ class TicTacToeTest {
         assertEquals(expect, game.toString());
     }
 
+    @Test
+    public void checkBadTurn2Same(){
+        String expected = "Player O has taken: A2";
+        game.Turn("A1");
+        String result = game.Turn("A1");
+        assertNotEquals(expected, result);
+        assertTrue(result.startsWith("Bad"));
+    }
+
+    @Test
+    public void checkBadTurn2SameAndDifferent(){
+        String expected = "Player O has taken: A2";
+        game.Turn("A1");
+        game.Turn("A1"); // should fail, but allow next
+        assertEquals(expected, game.Turn("A2"));
+    }
+
 }
