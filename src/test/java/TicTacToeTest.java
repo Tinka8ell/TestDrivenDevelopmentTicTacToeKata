@@ -120,15 +120,15 @@ class TicTacToeTest {
     @Test
     public void checkForDraw(){
         String expected = "Draw";
-        game.Turn("B2");
-        game.Turn("A1");
-        game.Turn("C3");
-        game.Turn("B1");
-        game.Turn("C2");
-        game.Turn("C1");
-        game.Turn("A3");
-        game.Turn("A2");
-        assertEquals(expected, game.Turn("B3"));
+        game.Turn("A1"); //X
+        game.Turn("A3"); //O
+        game.Turn("A2"); //X
+        game.Turn("B1"); //O
+        game.Turn("B2"); //X
+        game.Turn("C2"); //O
+        game.Turn("B3"); //X
+        game.Turn("C3"); //O
+        assertEquals(expected, game.Turn("C1"));
     }
 
 }
