@@ -20,6 +20,25 @@ class TicTacToeTest {
         assertEquals(expect, game.toString(), "Empty board");
     }
 
+    @ParameterizedTest
+    @CsvSource({
+            "A1, 1X.., 2..., 3...",
+            "B1, 1.X., 2..., 3...",
+            "C1, 1..X, 2..., 3...",
+            "A2, 1..., 2X.., 3...",
+            "B2, 1..., 2.X., 3...",
+            "C2, 1..., 2..X, 3...",
+            "A3, 1..., 2..., 3X..",
+            "B3, 1..., 2..., 3.X.",
+            "C3, 1..., 2..., 3..X",
+    })
+    public void checkBoardAfterTurn1(String input, String row1, String row2, String row3){
+        game.Turn(input);
+        String expected = " ABC\n" + row1 + "\n" + row2 + "\n" + row3;
+        String result = game.toString();
+        assertEquals(expected, result);
+    }
+
     @Test
     public void checkEmptyInputToTurn(){
         String expect = "Player X has taken: null";
@@ -39,8 +58,8 @@ class TicTacToeTest {
             "C1", "C2", "C3",
     })
     public void checkTurn1(String input){
-        String expect = "Player X has taken: " + input;
-        assertEquals(expect, game.Turn(input));
+        String expected = "Player X has taken: " + input;
+        assertEquals(expected, game.Turn(input));
     }
 
     @ParameterizedTest
@@ -50,9 +69,9 @@ class TicTacToeTest {
             ".", "C", "3",
     })
     public void checkBadGrid(String input){
-        String expect = "Player X has taken: " + input;
+        String expected = "Player X has taken: " + input;
         String result = game.Turn(input);
-        assertNotEquals(expect, result);
+        assertNotEquals(expected, result);
         assertTrue(result.startsWith("Bad"));
     }
 
