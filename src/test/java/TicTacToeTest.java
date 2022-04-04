@@ -75,4 +75,19 @@ class TicTacToeTest {
         assertTrue(result.startsWith("Bad"));
     }
 
+    @Test
+    public void checkTurn2(){
+        String expected = "Player O has taken: A2";
+        game.Turn("A1");
+        assertEquals(expected, game.Turn("A2"));
+    }
+
+    @Test
+    public void checkBoardAfter2Turns(){
+        String expect = " ABC\n1X..\n2O..\n3...";
+        game.Turn("A1");
+        game.Turn("A2");
+        assertEquals(expect, game.toString());
+    }
+
 }
