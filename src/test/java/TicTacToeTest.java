@@ -14,7 +14,8 @@ class TicTacToeTest {
 
     @Test
     public void checkToString(){
-
+        String expect = " ABC\n1...\n2...\n3...";
+        assertEquals(expect, game.toString(), "Empty board");
     }
 
     @Test
